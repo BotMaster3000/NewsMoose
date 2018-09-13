@@ -11,9 +11,10 @@ namespace NewsMoose.Models
         public string Name { get; set; }
         public List<NewsPaper> NewsPapers { get; set; }
 
-        public Publisher(string name)
+        public Publisher(string name, List<NewsPaper> newsPapers = null)
         {
             Name = name;
+            NewsPapers = NewsPapers;
         }
     }
 }
