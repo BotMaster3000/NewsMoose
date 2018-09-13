@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace NewsMoose.Models
 {
-    class Publisher
+    class NewsPaper
     {
         public string Name { get; set; }
-        public List<NewsPaper> NewsPapers { get; set; }
+        public Publisher Publisher { get; set; }
 
-        public Publisher(string name)
+        public NewsPaper(string name, Publisher publisher = null)
         {
             Name = name;
+            Publisher = publisher;
         }
     }
 }

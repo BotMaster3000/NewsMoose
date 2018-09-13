@@ -76,7 +76,7 @@
     <Compile Include="DataBase\XmlStorage.cs" />
     <Compile Include="Interfaces\IDataBase.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
-    <Compile Include="Models\NewsLetter.cs" />
+    <Compile Include="Models\NewsPaper.cs" />
     <Compile Include="Models\Publisher.cs" />
     <Compile Include="ViewModels\GuiViewModel.cs" />
     <Compile Include="ViewModels\TuiViewModel.cs" />

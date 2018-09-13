@@ -10,7 +10,7 @@ namespace NewsMoose.DataStorage
 {
     class XmlStorage : IDataBase
     {
-        public void DeleteNewsLetters(List<NewsLetter> newsLetter)
+        public void DeleteNewsLetters(List<NewsPaper> newsPaper)
         {
             throw new NotImplementedException();
         }
@@ -20,7 +20,7 @@ namespace NewsMoose.DataStorage
             throw new NotImplementedException();
         }
 
-        public List<NewsLetter> GetNewsletters()
+        public List<NewsPaper> GetNewsPapers()
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace NewsMoose.DataStorage
             throw new NotImplementedException();
         }
 
-        public void InsertNewsletters(List<NewsLetter> newsLetters)
+        public void InsertNewsletters(List<NewsPaper> newsPapers)
         {
             throw new NotImplementedException();
         }
@@ -40,7 +40,7 @@ namespace NewsMoose.DataStorage
             throw new NotImplementedException();
         }
 
-        public void UpdateNewsletters(List<NewsLetter> newsLetters)
+        public void UpdateNewsletters(List<NewsPaper> newsPapers)
         {
             throw new NotImplementedException();
         }

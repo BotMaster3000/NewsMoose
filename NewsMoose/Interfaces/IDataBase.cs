@@ -9,10 +9,10 @@ namespace NewsMoose.Interfaces
 {
     interface IDataBase
     {
-        List<NewsLetter> GetNewsletters();
-        void InsertNewsletters(List<NewsLetter> newsLetters);
-        void UpdateNewsletters(List<NewsLetter> newsLetters);
-        void DeleteNewsLetters(List<NewsLetter> newsLetter);
+        List<NewsPaper> GetNewsPapers();
+        void InsertNewsletters(List<NewsPaper> newsPapers);
+        void UpdateNewsletters(List<NewsPaper> newsPapers);
+        void DeleteNewsLetters(List<NewsPaper> newsPaper);
 
         List<Publisher> GetPublishers();
         void InsertPublishers(List<Publisher> publishers);

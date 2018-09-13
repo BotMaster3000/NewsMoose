@@ -8,16 +8,16 @@ namespace NewsMoose.Interfaces
     interface IViewModel : INotifyPropertyChanged
     {
         List<Publisher> Publishers { get; set; }
-        List<NewsLetter> Newsletters { get; set; }
+        List<NewsPaper> Newsletters { get; set; }
 
         void CreateNewPublisher(string name);
         void UpdatePublisher(Publisher publisher, string newName, string oldName);
         void DeletePublisher(Publisher publisher);
         void ShowPublishers();
 
-        void CreateNewNewsLetter(string name);
-        void UpdateNewsletter(NewsLetter newsletter, string newName);
-        void DeleteNewsletter(NewsLetter newsletter);
-        void ShowNewsletters();
+        void CreateNewNewsPaper(string name);
+        void UpdateNewsPaper(NewsPaper newsPaper, string newName);
+        void DeleteNewsPaper(NewsPaper newsPaper);
+        void ShowNewsPaper();
     }
 }

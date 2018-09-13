@@ -12,7 +12,7 @@ namespace NewsMoose.ViewModels
     class TuiViewModel : IViewModel
     {
         public List<Publisher> Publishers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<NewsLetter> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<NewsPaper> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -21,7 +21,7 @@ namespace NewsMoose.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public void CreateNewNewsLetter(string name)
+        public void CreateNewNewsPaper(string name)
         {
             throw new NotImplementedException();
         }
@@ -31,7 +31,7 @@ namespace NewsMoose.ViewModels
             throw new NotImplementedException();
         }
 
-        public void DeleteNewsletter(NewsLetter newsletter)
+        public void DeleteNewsPaper(NewsPaper newsletter)
         {
             throw new NotImplementedException();
         }
@@ -41,7 +41,7 @@ namespace NewsMoose.ViewModels
             throw new NotImplementedException();
         }
 
-        public void ShowNewsletters()
+        public void ShowNewsPaper()
         {
             throw new NotImplementedException();
         }
@@ -51,7 +51,7 @@ namespace NewsMoose.ViewModels
             throw new NotImplementedException();
         }
 
-        public void UpdateNewsletter(NewsLetter newsletter, string newName)
+        public void UpdateNewsPaper(NewsPaper newsletter, string newName)
         {
             throw new NotImplementedException();
         }
