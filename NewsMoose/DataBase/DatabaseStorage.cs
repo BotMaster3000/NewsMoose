@@ -10,6 +10,16 @@ namespace NewsMoose.DataStorage
 {
     class DatabaseStorage : IDataBase
     {
+        public void DeleteNewsLetters(List<NewsLetter> newsLetter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeletePublishers(List<Publisher> publishers)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<NewsLetter> GetNewsletters()
         {
             throw new NotImplementedException();
