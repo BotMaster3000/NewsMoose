@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NewsMoose"
         xmlns:view="clr-namespace:NewsMoose.Views"
         mc:Ignorable="d"
-        Title="NewsMoose" Height="auto" Width="auto">
+        Title="NewsMoose" SizeToContent="WidthAndHeight">
     <view:GuiView></view:GuiView>
     <!--<view:TuiView></view:TuiView>-->
 </Window>
