@@ -11,7 +11,7 @@ namespace NewsMoose.ViewModels
 {
     class TuiViewModel : IViewModel
     {
-        public List<Publisher> Publisher { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<Publisher> Publishers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<NewsLetter> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -7,7 +7,7 @@ namespace NewsMoose.Interfaces
 {
     interface IViewModel : INotifyPropertyChanged
     {
-        List<Publisher> Publisher { get; set; }
+        List<Publisher> Publishers { get; set; }
         List<NewsLetter> Newsletters { get; set; }
 
         void CreateNewPublisher(string name);

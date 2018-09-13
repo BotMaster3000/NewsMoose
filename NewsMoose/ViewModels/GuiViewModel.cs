@@ -11,7 +11,20 @@ namespace NewsMoose.ViewModels
 {
     class GuiViewModel : IViewModel, INotifyPropertyChanged
     {
-        public List<Publisher> Publisher { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private List<Publisher> publishers;
+        public List<Publisher> Publishers
+        {
+            get { return publishers; }
+            set
+            {
+                // Anmerkung zur Entwicklung!: Nicht vergessen das OnPropertyChanged nicht ausgeführt wird, wenn man einen Publisher direkt ändert, sondern nur wenn die Liste geändert wird
+                if (publishers != value)
+                {
+                    publishers = value;
+                    OnPropertyChanged(nameof(Publishers));
+                }
+            }
+        }
         public List<NewsLetter> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;
