@@ -72,6 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataBase\DatabaseStorage.cs" />
+    <Compile Include="DataBase\XmlStorage.cs" />
     <Compile Include="Interfaces\IDataBase.cs" />
     <Compile Include="Interfaces\IViewModel.cs" />
     <Compile Include="Models\NewsLetter.cs" />
