@@ -16,6 +16,11 @@ namespace NewsMoose.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
         public void CreateNewNewsLetter(string name)
         {
             throw new NotImplementedException();

@@ -12,9 +12,11 @@ namespace NewsMoose.Interfaces
         List<NewsLetter> GetNewsletters();
         void InsertNewsletters(List<NewsLetter> newsLetters);
         void UpdateNewsletters(List<NewsLetter> newsLetters);
+        void DeleteNewsLetters(List<NewsLetter> newsLetter);
 
         List<Publisher> GetPublishers();
         void InsertPublishers(List<Publisher> publishers);
         void UpdatePublishers(List<Publisher> publishers);
+        void DeletePublishers(List<Publisher> publishers);
     }
 }

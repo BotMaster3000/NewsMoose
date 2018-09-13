@@ -9,12 +9,17 @@ using NewsMoose.Models;
 
 namespace NewsMoose.ViewModels
 {
-    class GuiViewModel : IViewModel
+    class GuiViewModel : IViewModel, INotifyPropertyChanged
     {
         public List<Publisher> Publisher { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public List<NewsLetter> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
         public void CreateNewNewsLetter(string name)
         {
