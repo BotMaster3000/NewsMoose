@@ -11,8 +11,39 @@ namespace NewsMooseClassLibrary.ViewModels
 {
     class TuiViewModel : IViewModel
     {
-        public List<Publisher> Publishers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<NewsPaper> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private List<Publisher> publishers;
+        public List<Publisher> Publishers
+        {
+            get
+            {
+                return publishers;
+            }
+            set
+            {
+                if (publishers != value)
+                {
+                    publishers = value;
+                    OnPropertyChanged(nameof(Publishers));
+                }
+            }
+        }
+
+        private List<NewsPaper> newspapers;
+        public List<NewsPaper> Newspapers
+        {
+            get
+            {
+                return newspapers;
+            }
+            set
+            {
+                if (newspapers != value)
+                {
+                    newspapers = value;
+                    OnPropertyChanged(nameof(Newspapers));
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -23,22 +54,28 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void CreateNewNewsPaper(string name)
         {
-            throw new NotImplementedException();
+            NewsPaper newspaper = new NewsPaper(name);
+            Newspapers.Add(newspaper);
+            OnPropertyChanged(nameof(Newspapers));
         }
 
         public void CreateNewPublisher(string name)
         {
-            throw new NotImplementedException();
+            Publisher publisher = new Publisher(name);
+            Publishers.Add(publisher);
+            OnPropertyChanged(nameof(Publishers));
         }
 
         public void DeleteNewsPaper(NewsPaper newsletter)
         {
-            throw new NotImplementedException();
+            Newspapers.Remove(newsletter);
+            OnPropertyChanged(nameof(Newspapers));
         }
 
         public void DeletePublisher(Publisher publisher)
         {
-            throw new NotImplementedException();
+            Publishers.Remove(publisher);
+            OnPropertyChanged(nameof(Publishers));
         }
 
         public void ShowNewsPaper()
@@ -51,14 +88,16 @@ namespace NewsMooseClassLibrary.ViewModels
             throw new NotImplementedException();
         }
 
-        public void UpdateNewsPaper(NewsPaper newsletter, string newName)
+        public void UpdateNewsPaper(NewsPaper newspaper, string newName)
         {
-            throw new NotImplementedException();
+            newspaper.Name = newName;
+            OnPropertyChanged(nameof(Newspapers));
         }
 
-        public void UpdatePublisher(Publisher publisher, string newName, string oldName)
+        public void UpdatePublisher(Publisher publisher, string newName)
         {
-            throw new NotImplementedException();
+            publisher.Name = newName;
+            OnPropertyChanged(nameof(Publishers));
         }
     }
 }

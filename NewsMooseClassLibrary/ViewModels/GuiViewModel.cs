@@ -25,7 +25,7 @@ namespace NewsMooseClassLibrary.ViewModels
                 }
             }
         }
-        public List<NewsPaper> Newsletters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<NewsPaper> Newspapers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -69,7 +69,7 @@ namespace NewsMooseClassLibrary.ViewModels
             throw new NotImplementedException();
         }
 
-        public void UpdatePublisher(Publisher publisher, string newName, string oldName)
+        public void UpdatePublisher(Publisher publisher, string newName)
         {
             throw new NotImplementedException();
         }
