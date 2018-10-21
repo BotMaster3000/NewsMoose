@@ -10,8 +10,7 @@ namespace NewsMooseConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello");
-            Console.ReadLine();
+
         }
     }
 }
