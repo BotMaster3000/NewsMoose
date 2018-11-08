@@ -4,9 +4,26 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NewsMooseWpf.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Width="600" Height="500">
     <Grid>
-        
+        <GroupBox x:Name="PublisherGrid" Header="Verlage" HorizontalAlignment="Left" Height="235" Margin="10,10,0,0" VerticalAlignment="Top" Width="580">
+            <ListView x:Name="PublisherListView" Margin="10,10,378,5" Width="180">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+        <GroupBox x:Name="NewsPaperGrid" Header="Zeitungen" HorizontalAlignment="Left" Height="235" Margin="10,255,0,0" VerticalAlignment="Top" Width="580">
+            <ListView x:Name="NewsPaperListView" Margin="10,10,378,5" Width="180">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
     </Grid>
 </UserControl>
