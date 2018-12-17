@@ -9,9 +9,10 @@ namespace NewsMooseConsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             CommandController controller = new CommandController();
+            controller.Execute("DisplayMainMenu");
             string command = "";
             do
             {
