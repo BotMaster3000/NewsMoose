@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\OutputController.cs" />
-    <Compile Include="Models\OutputModel.cs" />
+    <Compile Include="Controller\CommandController.cs" />
+    <Compile Include="Interfaces\ICommandController.cs" />
+    <Compile Include="Interfaces\ICommandModel.cs" />
+    <Compile Include="Models\CommandModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

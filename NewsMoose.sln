@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsMooseWpf", "NewsMooseWp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsMooseClassLibrary", "NewsMooseClassLibrary\NewsMooseClassLibrary.csproj", "{20CBB77C-2DE1-4CFE-A15C-976C0847B36B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsMooseConsoleTests", "NewsMooseConsoleTests\NewsMooseConsoleTests.csproj", "{D74F5435-EC43-4421-AC0A-D55309FE1509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +29,15 @@ Global
 		{20CBB77C-2DE1-4CFE-A15C-976C0847B36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20CBB77C-2DE1-4CFE-A15C-976C0847B36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20CBB77C-2DE1-4CFE-A15C-976C0847B36B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74F5435-EC43-4421-AC0A-D55309FE1509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D74F5435-EC43-4421-AC0A-D55309FE1509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D74F5435-EC43-4421-AC0A-D55309FE1509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D74F5435-EC43-4421-AC0A-D55309FE1509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9076283E-AF9D-42BB-AE0A-E4F3B8F28D92}
 	EndGlobalSection
 EndGlobal
