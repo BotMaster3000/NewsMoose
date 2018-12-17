@@ -1,4 +1,4 @@
 # NewsMoose
 ZeitungsVerwaltungsTool
 
-A school-prject.
+A school-project.

@@ -4,9 +4,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NewsMooseWpf.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        
+             mc:Ignorable="d" Width="600" Height="255">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="283*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox x:Name="PublisherGroup" Header="Verlage" HorizontalAlignment="Left" Height="235" Margin="10,10,0,0" VerticalAlignment="Top" Width="265" Grid.ColumnSpan="3">
+            <Grid x:Name="PublisherGrid" HorizontalAlignment="Left" Height="195" Margin="10,10,-2,0" VerticalAlignment="Top" Width="245">
+                <ListBox x:Name="PublisherListBox" HorizontalAlignment="Left" Height="193" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="DeletePublisher" Content="Löschen" HorizontalAlignment="Left" Margin="145,165,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="NewPublisher" Content="Erstellen" HorizontalAlignment="Left" Margin="145,125,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button x:Name="UpdatePublisher" Content="Übernehmen" HorizontalAlignment="Left" Margin="145,85,0,0" VerticalAlignment="Top" Width="75"/>
+                <TextBox x:Name="PublisherName" HorizontalAlignment="Left" Height="23" Margin="125,45,0,0" TextWrapping="Wrap" Text="Verlagsname" VerticalAlignment="Top" Width="110"/>
+                <Label Content="Verlagsname" HorizontalAlignment="Left" Margin="125,14,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="110"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="NewsPaperGroup" Header="Zeitungen" HorizontalAlignment="Left" Height="235" Margin="272,10,0,0" VerticalAlignment="Top" Width="265" Grid.Column="1">
+            <Grid x:Name="NewsPaperGrid" HorizontalAlignment="Left" Height="202" Margin="10,10,-2,-12" VerticalAlignment="Top" Width="245">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="181*"/>
+                    <ColumnDefinition Width="64*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox x:Name="NewsPaperListBox" HorizontalAlignment="Left" Height="195" VerticalAlignment="Top" Width="120"/>
+                <Button x:Name="DeleteNewsPaper" Content="Löschen" Margin="145,165,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top"/>
+                <Button x:Name="NewNewsPaper" Content="Erstellen" HorizontalAlignment="Left" Margin="145,125,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.48,0.6" Grid.ColumnSpan="2"/>
+                <Button x:Name="UpdateNewsPaper" Content="Übernehmen" HorizontalAlignment="Left" Margin="145,85,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
+                <TextBox x:Name="NewsPaperName" HorizontalAlignment="Left" Height="23" Margin="125,45,0,0" TextWrapping="Wrap" Text="Zeitungsname" VerticalAlignment="Top" Width="110" Grid.ColumnSpan="2"/>
+                <Label Content="Zeitungsname" HorizontalAlignment="Left" Margin="125,14,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2" Width="110"/>
+            </Grid>
+        </GroupBox>
+
     </Grid>
 </UserControl>
