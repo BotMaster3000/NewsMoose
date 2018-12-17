@@ -11,7 +11,10 @@ namespace NewsMooseClassLibrary.ViewModels
 {
     public class GuiViewModel : IViewModel, INotifyPropertyChanged
     {
-        private List<Publisher> publishers;
+
+        private IDataBase data = null;
+
+        private List<Publisher> publishers = new List<Publisher>();
         public List<Publisher> Publishers
         {
             get { return publishers; }
@@ -25,6 +28,21 @@ namespace NewsMooseClassLibrary.ViewModels
                 }
             }
         }
+        private List<NewsPaper> newsPapers = new List<NewsPaper>();
+        public List<NewsPaper> NewsPapers
+        {
+            get { return newsPapers; }
+            set
+            {
+                // Anmerkung zur Entwicklung!: Nicht vergessen das OnPropertyChanged nicht ausgeführt wird, wenn man einen Publisher direkt ändert, sondern nur wenn die Liste geändert wird
+                if (newsPapers != value)
+                {
+                    newsPapers = value;
+                    OnPropertyChanged(nameof(newsPapers));
+                }
+            }
+        }
+
         public List<NewsPaper> Newspapers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -36,12 +54,17 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void CreateNewNewsPaper(string name)
         {
-            throw new NotImplementedException();
+            Publisher publisher = new Publisher(name);
+            if (publishers.Contains(publisher)){
+                NewsPaper newsletter = new NewsPaper(name,publisher);
+            }
         }
 
         public void CreateNewPublisher(string name)
         {
-            throw new NotImplementedException();
+            Publisher publisher = new Publisher(name);
+            publishers.Add(publisher);
+            data.InsertPublishers(publishers);
         }
 
         public void DeleteNewsPaper(NewsPaper newsletter)
