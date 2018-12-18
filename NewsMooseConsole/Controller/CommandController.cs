@@ -31,8 +31,8 @@ namespace NewsMooseConsole.Controller
                 {new CommandModel(){ Method = CreatePublisher, Name = nameof(CreatePublisher), CanExecute = true}},
                 {new CommandModel(){ Method = DeleteNewsPaper, Name = nameof(DeleteNewsPaper), CanExecute = true}},
                 {new CommandModel(){ Method = DeletePublisher, Name = nameof(DeletePublisher), CanExecute = true}},
-
-
+                {new CommandModel(){ Method = UpdatePublisher, Name = nameof(UpdatePublisher), CanExecute = true}},
+                {new CommandModel(){ Method = UpdateNewsPaper, Name = nameof(UpdateNewsPaper), CanExecute = true}},
             };
         }
 
@@ -252,6 +252,112 @@ namespace NewsMooseConsole.Controller
                 }
             }
             return found;
+        }
+
+        private void UpdatePublisher()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter name for publisher to Update");
+            string publisherName = Console.ReadLine();
+            Publisher publisher = GetPublisher(publisherName);
+            if (publisher == null)
+            {
+                Console.WriteLine("No publisher found");
+            }
+            else
+            {
+                Console.WriteLine("Enter number of Option: ");
+                string[] options = new string[]
+                {
+                    "Rename Publisher",
+                    "Add existing Newspaper to publisher"
+                };
+
+                for (int i = 0; i < options.Length; i++)
+                {
+                    Console.WriteLine($"{i}: {options[i]}");
+                }
+
+                switch (Console.ReadLine())
+                {
+                    case "0":
+                        RenamePublisher(publisher);
+                        break;
+                    case "1":
+                        AssignNewsPaperToPublisher(publisher);
+                        break;
+                    default:
+                        Console.WriteLine("No valid option");
+                        break;
+                }
+            }
+
+            DisplayMenuAfterUserInput();
+        }
+
+        private Publisher GetPublisher(string publisherName)
+        {
+            foreach (Publisher publisher in viewModel.Publishers)
+            {
+                if (publisher.Name == publisherName)
+                {
+                    return publisher;
+                }
+            }
+            return null;
+        }
+
+        private void RenamePublisher(Publisher publisher)
+        {
+            Console.WriteLine("Enter new name for publisher: ");
+            string newPublisherName = Console.ReadLine();
+            if (PublisherAlreadyExists(newPublisherName))
+            {
+                Console.WriteLine("Newly entered publisher already exists");
+            }
+            else
+            {
+                foreach (NewsPaper paper in viewModel.Newspapers)
+                {
+                    if (paper.Publisher.Name == publisher.Name)
+                    {
+                        paper.Publisher.Name = newPublisherName;
+                    }
+                }
+
+                publisher.Name = newPublisherName;
+                Console.WriteLine("Updated publisher and references");
+            }
+        }
+
+        private void AssignNewsPaperToPublisher(Publisher publisher)
+        {
+            Console.WriteLine("Enter name of Newspaper to assign to publisher");
+            string newspaperName = Console.ReadLine();
+            NewsPaper paper = GetNewsPaper(newspaperName);
+            if (paper != null)
+            {
+                publisher.NewsPapers.Add(paper);
+                paper.Publisher = publisher;
+                Console.WriteLine("Assigned newspaper to publisher");
+            }
+        }
+
+        private NewsPaper GetNewsPaper(string newsPaperName)
+        {
+            foreach (NewsPaper paper in viewModel.Newspapers)
+            {
+                if (paper.Name == newsPaperName)
+                {
+                    return paper;
+                }
+            }
+            return null;
+        }
+
+        private void UpdateNewsPaper()
+        {
+            throw new NotImplementedException();
         }
     }
 }
