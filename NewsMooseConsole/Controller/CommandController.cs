@@ -124,6 +124,11 @@ namespace NewsMooseConsole.Controller
                 viewModel.CreateNewNewsPaper(newspaperName);
                 Console.WriteLine("Newspaper created");
             }
+            DisplayMenuAfterUserInput();
+        }
+
+        private void DisplayMenuAfterUserInput()
+        {
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
             DisplayMainMenu();
@@ -160,9 +165,7 @@ namespace NewsMooseConsole.Controller
                 viewModel.CreateNewPublisher(publisherName);
                 Console.WriteLine("Publisher created");
             }
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
-            DisplayMainMenu();
+            DisplayMenuAfterUserInput();
         }
 
         private bool PublisherAlreadyExists(string publisherName)
@@ -193,9 +196,7 @@ namespace NewsMooseConsole.Controller
                     Console.WriteLine("No newspaper found");
                 }
             }
-            Console.WriteLine("Press any key to continue");
-            Console.ReadKey();
-            DisplayMainMenu();
+            DisplayMenuAfterUserInput();
         }
 
         private bool DeleteCommandConfirmed()
@@ -235,9 +236,7 @@ namespace NewsMooseConsole.Controller
                     Console.WriteLine("No publisher found");
                 }
             }
-            Console.WriteLine("Enter any key to continue");
-            Console.ReadKey();
-            DisplayMainMenu();
+            DisplayMenuAfterUserInput();
         }
 
         private bool DeletePublisher(string publisherName)
