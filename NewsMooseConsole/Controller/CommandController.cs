@@ -105,22 +105,20 @@ namespace NewsMooseConsole.Controller
         {
             Console.Clear();
             Console.WriteLine("Creating new NewsPaper");
-            Console.WriteLine("Enter new name for NewsPaper: ");
+            Console.WriteLine("Enter name:");
             string newspaperName = Console.ReadLine();
-            if (!string.IsNullOrEmpty(newspaperName))
+            if (string.IsNullOrEmpty(newspaperName))
             {
-                if (NewsPaperAlreadyExists(newspaperName))
-                {
-                    Console.WriteLine("NewsPaper already exists");
-                }
-                else
-                {
-                    viewModel.CreateNewNewsPaper(newspaperName);
-                }
+                Console.WriteLine("No valid NewsPapername");
+            }
+            else if (NewsPaperAlreadyExists(newspaperName))
+            {
+                Console.WriteLine("NewsPaper already exists");
             }
             else
             {
-                Console.WriteLine("No valid NewsPapername");
+                viewModel.CreateNewNewsPaper(newspaperName);
+                Console.WriteLine("Newspaper created");
             }
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
@@ -129,9 +127,9 @@ namespace NewsMooseConsole.Controller
 
         private bool NewsPaperAlreadyExists(string newsPaperName)
         {
-            foreach(NewsPaper paper in viewModel.Newspapers)
+            foreach (NewsPaper paper in viewModel.Newspapers)
             {
-                if(paper.Name == newsPaperName)
+                if (paper.Name == newsPaperName)
                 {
                     return true;
                 }
@@ -141,7 +139,38 @@ namespace NewsMooseConsole.Controller
 
         private void CreatePublisher()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Creating new Publisher");
+            Console.WriteLine("Enter name:");
+            string publisherName = Console.ReadLine();
+            if (string.IsNullOrEmpty(publisherName))
+            {
+                Console.WriteLine("Invalid Input");
+            }
+            else if (PublisherAlreadyExists(publisherName))
+            {
+                Console.WriteLine("Publisher already exists");
+            }
+            else
+            {
+                viewModel.CreateNewPublisher(publisherName);
+                Console.WriteLine("Publisher created");
+            }
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            DisplayMainMenu();
+        }
+
+        private bool PublisherAlreadyExists(string publisherName)
+        {
+            foreach (Publisher publisher in viewModel.Publishers)
+            {
+                if (publisher.Name == publisherName)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

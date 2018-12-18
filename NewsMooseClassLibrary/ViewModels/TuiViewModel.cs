@@ -82,7 +82,7 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void ShowNewsPaper()
         {
-            foreach(NewsPaper paper in Newspapers)
+            foreach (NewsPaper paper in Newspapers)
             {
                 Console.WriteLine($"Name: {paper.Name} | Publisher: {paper.Publisher}");
             }
@@ -90,11 +90,11 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void ShowPublishers()
         {
-            foreach(Publisher publisher in Publishers)
+            foreach (Publisher publisher in Publishers)
             {
                 Console.WriteLine($"Publisher: {publisher.Name}");
                 Console.WriteLine("NewsPapers:");
-                foreach(NewsPaper paper in publisher.NewsPapers)
+                foreach (NewsPaper paper in publisher.NewsPapers)
                 {
                     Console.WriteLine($"- {paper.Name}");
                 }
