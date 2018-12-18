@@ -357,7 +357,95 @@ namespace NewsMooseConsole.Controller
 
         private void UpdateNewsPaper()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Enter name of Newspaper to update:");
+            string newsPaperName = Console.ReadLine();
+            NewsPaper paper = GetNewsPaper(newsPaperName);
+            if (paper == null)
+            {
+                Console.WriteLine("No paper found");
+            }
+            else
+            {
+                Console.WriteLine("Enter number of option");
+                string[] options = new string[]
+                {
+                    "Rename NewsPaper",
+                    "Set publisher",
+                };
+                for (int i = 0; i < options.Length; i++)
+                {
+                    Console.WriteLine($"{i}: {options[i]}");
+                }
+                switch (Console.ReadLine())
+                {
+                    case "0":
+                        RenameNewsPaper(paper);
+                        break;
+                    case "1":
+                        AssignPublisherToNewsPaper(paper);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option");
+                        break;
+                }
+            }
+
+            DisplayMenuAfterUserInput();
+        }
+
+        private void RenameNewsPaper(NewsPaper paper)
+        {
+            Console.WriteLine("Enter new name for NewsPaper: ");
+            string newName = Console.ReadLine();
+            if (NewsPaperAlreadyExists(newName))
+            {
+                Console.WriteLine("Newspaper with new name already exists");
+            }
+            else
+            {
+                foreach(Publisher publisher in viewModel.Publishers)
+                {
+                    foreach(NewsPaper tempPaper in publisher.NewsPapers)
+                    {
+                        if(tempPaper.Name == paper.Name)
+                        {
+                            tempPaper.Name = newName;
+                        }
+                    }
+                }
+                paper.Name = newName;
+            }
+        }
+
+        private void AssignPublisherToNewsPaper(NewsPaper paper)
+        {
+            Console.WriteLine("Enter name of Publisher to assign:");
+            string publisherName = Console.ReadLine();
+            Publisher newPublisher = GetPublisher(publisherName);
+            if(newPublisher == null)
+            {
+                Console.WriteLine("Publisher not found");
+            }
+            else
+            {
+                paper.Publisher = newPublisher;
+                foreach(Publisher tempPublisher in viewModel.Publishers)
+                {
+                    for (int i = 0; i < tempPublisher.NewsPapers.Count; i++)
+                    {
+                        if (tempPublisher.NewsPapers[i].Name == paper.Name)
+                        {
+                            tempPublisher.NewsPapers.RemoveAt(i);
+                            break;
+                        }
+                    }
+                    if(tempPublisher.Name == newPublisher.Name)
+                    {
+                        tempPublisher.NewsPapers.Add(paper);
+                    }
+                }
+            }
         }
     }
 }
