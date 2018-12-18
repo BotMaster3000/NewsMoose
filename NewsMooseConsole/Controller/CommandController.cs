@@ -62,6 +62,16 @@ namespace NewsMooseConsole.Controller
         {
             Console.Clear();
             Console.WriteLine("NewsMoose");
+            DisplayOptions(false);
+        }
+
+        private void DisplayOptions(bool additionalEmptyLine = true)
+        {
+            if (additionalEmptyLine)
+            {
+                Console.WriteLine();
+            }
+
             Console.WriteLine("Current Options:");
             int counter = 1;
             foreach (ICommandModel commandModel in commandList)
@@ -76,12 +86,16 @@ namespace NewsMooseConsole.Controller
 
         private void ShowPublishers()
         {
+            Console.Clear();
             viewModel.ShowPublishers();
+            DisplayOptions();
         }
 
         private void ShowNewsPaper()
         {
+            Console.Clear();
             viewModel.ShowNewsPaper();
+            DisplayOptions();
         }
     }
 }
