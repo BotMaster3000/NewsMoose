@@ -59,14 +59,16 @@ namespace NewsMooseClassLibrary.ViewModels
             Publisher publisher = new Publisher(name);
             if (publishers.Contains(publisher)){
                 NewsPaper newsletter = new NewsPaper(name,publisher);
+                
             }
         }
 
         public void CreateNewPublisher(string name)
         {
             Publisher publisher = new Publisher(name);
-            publishers.Add(publisher);
-            data.InsertPublishers(publishers);
+            Publishers.Add(publisher);
+            //data.InsertPublishers(Publishers);
+            OnPropertyChanged(nameof(Publishers));
         }
 
         public void DeleteNewsPaper(NewsPaper newsletter)

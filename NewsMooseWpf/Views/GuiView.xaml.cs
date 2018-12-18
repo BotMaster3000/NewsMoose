@@ -22,7 +22,8 @@ namespace NewsMooseWpf.Views
     /// </summary>
     public partial class GuiView : UserControl
     {
-        private GuiViewModel viewModel = new GuiViewModel();
+        public GuiViewModel ViewModel { get; set; } = new GuiViewModel();
+
         public GuiView()
         {
             InitializeComponent();
@@ -33,9 +34,7 @@ namespace NewsMooseWpf.Views
         {
             if(NewsPaperName.Text != "")
             {
-                viewModel.CreateNewNewsPaper(NewsPaperName.Text);
-                //Daten Speicher
-                //Daten Laden
+                ViewModel.CreateNewNewsPaper(NewsPaperName.Text);
                 //ListBox Aktualisieren
             }
             
@@ -45,7 +44,7 @@ namespace NewsMooseWpf.Views
         {
             if (PublisherName.Text != "")
             {
-                viewModel.CreateNewPublisher(PublisherName.Text);
+                ViewModel.CreateNewPublisher(PublisherName.Text);
                 //Daten Speicher
                 //Daten Laden
                 //ListBox Aktualisieren
