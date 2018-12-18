@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NewsMooseClassLibrary.Interfaces;
 using NewsMooseClassLibrary.DataBase;
 using NewsMooseClassLibrary.Models;
+using System.Windows;
 
 namespace NewsMooseClassLibrary.ViewModels
 {
@@ -65,9 +66,19 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void CreateNewPublisher(string name)
         {
-            Publisher publisher = new Publisher(name);
-            Publishers.Add(publisher);
-            //data.InsertPublishers(Publishers);
+            Publisher newPublisher = new Publisher(name);
+            bool exist = false;
+            foreach (Publisher publisher in Publishers) {
+                if (publisher.Name == name) {
+                    exist = true;
+                }
+            }
+            if (!exist)
+            {
+                Publishers.Add(newPublisher);
+                //data.InsertPublishers(Publishers);
+            }
+            
             OnPropertyChanged(nameof(Publishers));
         }
 
@@ -78,7 +89,12 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void DeletePublisher(Publisher publisher)
         {
-            throw new NotImplementedException();
+            if (Publishers.Contains(publisher))
+            {
+                Publishers.Remove(publisher);
+            }
+            //data.DeletePublisher(publisher)
+
         }
 
         public void ShowNewsPaper()
@@ -98,7 +114,30 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void UpdatePublisher(Publisher publisher, string newName)
         {
-            throw new NotImplementedException();
+            if (Publishers.Contains(publisher))
+            {
+                bool exist = false;
+                foreach (Publisher xpublisher in Publishers)
+                {
+                    if (xpublisher.Name == newName)
+                    {
+                        exist = true;
+                    }
+                }
+                if (!exist)
+                {
+                    publisher.Name = newName;
+                    Publishers[Publishers.IndexOf(publisher)] = publisher;
+                }
+                else
+                {
+                    MessageBox.Show("Der von Ihnen gewählte Verlagsname ist bereits vorhanden!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bitte wählen Sie ein Verlag aus, bevor Sie diesen ändern können.");
+            }
         }
     }
 }
