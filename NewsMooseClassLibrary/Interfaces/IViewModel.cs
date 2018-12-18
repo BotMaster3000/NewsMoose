@@ -5,7 +5,7 @@ using NewsMooseClassLibrary.Models;
 
 namespace NewsMooseClassLibrary.Interfaces
 {
-    interface IViewModel : INotifyPropertyChanged
+    public interface IViewModel : INotifyPropertyChanged
     {
         List<Publisher> Publishers { get; set; }
         List<NewsPaper> Newspapers { get; set; }

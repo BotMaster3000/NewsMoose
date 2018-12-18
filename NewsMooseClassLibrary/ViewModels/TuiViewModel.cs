@@ -17,7 +17,7 @@ namespace NewsMooseClassLibrary.ViewModels
         {
             get
             {
-                return publishers;
+                return publishers ?? (publishers = new List<Publisher>());
             }
             set
             {
@@ -35,7 +35,7 @@ namespace NewsMooseClassLibrary.ViewModels
         {
             get
             {
-                return newspapers;
+                return newspapers ?? (newspapers = new List<NewsPaper>());
             }
             set
             {
@@ -82,12 +82,23 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void ShowNewsPaper()
         {
-            throw new NotImplementedException();
+            foreach(NewsPaper paper in Newspapers)
+            {
+                Console.WriteLine($"Name: {paper.Name} | Publisher: {paper.Publisher}");
+            }
         }
 
         public void ShowPublishers()
         {
-            throw new NotImplementedException();
+            foreach(Publisher publisher in Publishers)
+            {
+                Console.WriteLine($"Publisher: {publisher.Name}");
+                Console.WriteLine("NewsPapers:");
+                foreach(NewsPaper paper in publisher.NewsPapers)
+                {
+                    Console.WriteLine($"- {paper.Name}");
+                }
+            }
         }
 
         public void UpdateNewsPaper(NewsPaper newsPaper, string newName)

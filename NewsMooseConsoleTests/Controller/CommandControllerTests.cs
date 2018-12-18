@@ -38,5 +38,19 @@ namespace NewsMooseConsole.Controller.Tests
             CommandController controller = new CommandController();
             Assert.ThrowsException<Exception>(() => controller.Execute("RandomBla" + Guid.NewGuid()));
         }
+
+        [TestMethod]
+        public void DisplayPublishersTest_ShouldExecute()
+        {
+            CommandController controller = new CommandController();
+            controller.Execute("ShowPublishers");
+        }
+
+        [TestMethod]
+        public void DisplayNewspapersTest_ShouldExecute()
+        {
+            CommandController controller = new CommandController();
+            controller.Execute("ShowNewsPaper");
+        }
     }
 }

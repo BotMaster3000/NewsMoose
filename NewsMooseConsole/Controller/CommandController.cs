@@ -5,12 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using NewsMooseConsole.Interfaces;
 using NewsMooseConsole.Models;
+using NewsMooseClassLibrary.ViewModels;
 
 namespace NewsMooseConsole.Controller
 {
     public class CommandController : ICommandController
     {
         private List<ICommandModel> commandList;
+        TuiViewModel viewModel = new TuiViewModel();
 
         public CommandController()
         {
@@ -21,7 +23,9 @@ namespace NewsMooseConsole.Controller
         {
             commandList = new List<ICommandModel>()
             {
-                {new CommandModel(){ Method = DisplayMainMenu, Name = nameof(DisplayMainMenu), CanExecute = true} },
+                {new CommandModel(){ Method = DisplayMainMenu, Name = nameof(DisplayMainMenu), CanExecute = true}},
+                {new CommandModel(){ Method = ShowPublishers, Name = nameof(ShowPublishers), CanExecute = true}},
+                {new CommandModel(){ Method  = ShowNewsPaper, Name = nameof(ShowNewsPaper), CanExecute = true}},
             };
         }
 
@@ -60,7 +64,7 @@ namespace NewsMooseConsole.Controller
             Console.WriteLine("NewsMoose");
             Console.WriteLine("Current Options:");
             int counter = 1;
-            foreach(ICommandModel commandModel in commandList)
+            foreach (ICommandModel commandModel in commandList)
             {
                 if (commandModel.CanExecute)
                 {
@@ -68,6 +72,16 @@ namespace NewsMooseConsole.Controller
                     ++counter;
                 }
             }
+        }
+
+        private void ShowPublishers()
+        {
+            viewModel.ShowPublishers();
+        }
+
+        private void ShowNewsPaper()
+        {
+            viewModel.ShowNewsPaper();
         }
     }
 }
