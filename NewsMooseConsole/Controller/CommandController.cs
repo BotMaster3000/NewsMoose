@@ -29,6 +29,10 @@ namespace NewsMooseConsole.Controller
                 {new CommandModel(){ Method = ShowNewsPaper, Name = nameof(ShowNewsPaper), CanExecute = true}},
                 {new CommandModel(){ Method = CreateNewsPaper, Name = nameof(CreateNewsPaper), CanExecute = true}},
                 {new CommandModel(){ Method = CreatePublisher, Name = nameof(CreatePublisher), CanExecute = true}},
+                {new CommandModel(){ Method = DeleteNewsPaper, Name = nameof(DeleteNewsPaper), CanExecute = true}},
+                {new CommandModel(){ Method = DeletePublisher, Name = nameof(DeletePublisher), CanExecute = true}},
+
+
             };
         }
 
@@ -171,6 +175,53 @@ namespace NewsMooseConsole.Controller
                 }
             }
             return false;
+        }
+
+        private void DeleteNewsPaper()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter name of Publisher to Delete");
+            string newsPaperName = Console.ReadLine();
+            if (DeleteCommandConfirmed())
+            {
+                if (DeleteNewsPaper(newsPaperName))
+                {
+                    Console.WriteLine("Newspaper deleted");
+                }
+                else
+                {
+                    Console.WriteLine("No newspaper found");
+                }
+            }
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            DisplayMainMenu();
+        }
+
+        private bool DeleteCommandConfirmed()
+        {
+            Console.WriteLine("Enter 'delete' to confirm deletion");
+            return Console.ReadLine() == "delete";
+        }
+
+        private bool DeleteNewsPaper(string newsPaperName)
+        {
+            bool found = false;
+            for (int i = 0; i < viewModel.Newspapers.Count; i++)
+            {
+                if(viewModel.Newspapers[i].Name == newsPaperName)
+                {
+                    viewModel.DeleteNewsPaper(viewModel.Newspapers[i]);
+                    found = true;
+                    break;
+                }
+            }
+            return found;
+        }
+
+        private void DeletePublisher()
+        {
+
         }
     }
 }
