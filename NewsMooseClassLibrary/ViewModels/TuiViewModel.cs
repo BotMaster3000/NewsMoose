@@ -9,9 +9,10 @@ using NewsMooseClassLibrary.Models;
 
 namespace NewsMooseClassLibrary.ViewModels
 {
-    class TuiViewModel : IViewModel
+    public class TuiViewModel : IViewModel
     {
         private List<Publisher> publishers;
+
         public List<Publisher> Publishers
         {
             get
@@ -29,6 +30,7 @@ namespace NewsMooseClassLibrary.ViewModels
         }
 
         private List<NewsPaper> newspapers;
+
         public List<NewsPaper> Newspapers
         {
             get
@@ -66,9 +68,9 @@ namespace NewsMooseClassLibrary.ViewModels
             OnPropertyChanged(nameof(Publishers));
         }
 
-        public void DeleteNewsPaper(NewsPaper newsletter)
+        public void DeleteNewsPaper(NewsPaper newsPaper)
         {
-            Newspapers.Remove(newsletter);
+            Newspapers.Remove(newsPaper);
             OnPropertyChanged(nameof(Newspapers));
         }
 
@@ -88,9 +90,9 @@ namespace NewsMooseClassLibrary.ViewModels
             throw new NotImplementedException();
         }
 
-        public void UpdateNewsPaper(NewsPaper newspaper, string newName)
+        public void UpdateNewsPaper(NewsPaper newsPaper, string newName)
         {
-            newspaper.Name = newName;
+            newsPaper.Name = newName;
             OnPropertyChanged(nameof(Newspapers));
         }
 
