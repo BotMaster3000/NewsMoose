@@ -31,17 +31,17 @@ namespace NewsMooseClassLibrary.ViewModels
                 }
             }
         }
-        private List<NewsPaper> newsPapers = new List<NewsPaper>();
+        private List<NewsPaper> newspapers = new List<NewsPaper>();
         public List<NewsPaper> NewsPapers
         {
-            get { return newsPapers; }
+            get { return newspapers; }
             set
             {
                 // Anmerkung zur Entwicklung!: Nicht vergessen das OnPropertyChanged nicht ausgeführt wird, wenn man einen Publisher direkt ändert, sondern nur wenn die Liste geändert wird
-                if (newsPapers != value)
+                if (newspapers != value)
                 {
-                    newsPapers = value;
-                    OnPropertyChanged(nameof(newsPapers));
+                    newspapers = value;
+                    OnPropertyChanged(nameof(newspapers));
                 }
             }
         }
@@ -57,11 +57,21 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void CreateNewNewsPaper(string name)
         {
-            Publisher publisher = new Publisher(name);
-            if (publishers.Contains(publisher)){
-                NewsPaper newsletter = new NewsPaper(name,publisher);
-                
+            NewsPaper newnewsletter = new NewsPaper(name);
+            bool exist = false;
+            foreach (NewsPaper newsletter in NewsPapers)
+            {
+                if (newsletter.Name == name)
+                {
+                    exist = true;
+                }
             }
+            if (!exist)
+            {
+                NewsPapers.Add(newnewsletter);
+                //data.InsertNewsletter(NewsPapers);
+            }
+
         }
 
         public void CreateNewPublisher(string name)
@@ -84,7 +94,11 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void DeleteNewsPaper(NewsPaper newsletter)
         {
-            throw new NotImplementedException();
+            if (NewsPapers.Contains(newsletter))
+            {
+                NewsPapers.Remove(newsletter);
+            }
+            //data.DeleteNewsletter(NewsPapers);
         }
 
         public void DeletePublisher(Publisher publisher)
@@ -93,7 +107,7 @@ namespace NewsMooseClassLibrary.ViewModels
             {
                 Publishers.Remove(publisher);
             }
-            //data.DeletePublisher(publisher)
+            //data.DeletePublishers(Publishers);
 
         }
 
@@ -109,30 +123,71 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void UpdateNewsPaper(NewsPaper newsletter, string newName)
         {
-            throw new NotImplementedException();
+            if (NewsPapers.Contains(newsletter))
+            {
+                if (newName != "")
+                {
+                    bool exist = false;
+                    foreach (NewsPaper xnewsPapers in NewsPapers)
+                    {
+                        if (xnewsPapers.Name == newName)
+                        {
+                            exist = true;
+                        }
+                    }
+                    if (!exist)
+                    {
+                        newsletter.Name = newName;
+                        NewsPapers[NewsPapers.IndexOf(newsletter)] = newsletter;
+                        //data.UpdateNewsletters(NewsPapers);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Der von Ihnen gewählte Zeitungsname ist bereits vorhanden!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sie können kein leeren Namen für Zeitungen benutzen.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Bitte wählen Sie ein Zeitung aus, bevor Sie diesen ändern können.");
+            }
         }
 
         public void UpdatePublisher(Publisher publisher, string newName)
         {
             if (Publishers.Contains(publisher))
             {
-                bool exist = false;
-                foreach (Publisher xpublisher in Publishers)
+                if(newName != "")
                 {
-                    if (xpublisher.Name == newName)
+                    bool exist = false;
+                    foreach (Publisher xpublisher in Publishers)
                     {
-                        exist = true;
+                        if (xpublisher.Name == newName)
+                        {
+                            exist = true;
+                        }
                     }
-                }
-                if (!exist)
-                {
-                    publisher.Name = newName;
-                    Publishers[Publishers.IndexOf(publisher)] = publisher;
+                    if (!exist)
+                    {
+                        publisher.Name = newName;
+                        Publishers[Publishers.IndexOf(publisher)] = publisher;
+                        //data.UpdatePublishers(Publishers);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Der von Ihnen gewählte Verlagsname ist bereits vorhanden!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Der von Ihnen gewählte Verlagsname ist bereits vorhanden!");
+                    MessageBox.Show("Sie können kein leeren Namen für Verlage benutzen.");
                 }
+                
             }
             else
             {

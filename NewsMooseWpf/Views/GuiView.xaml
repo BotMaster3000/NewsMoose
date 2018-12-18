@@ -32,10 +32,16 @@
                     <ColumnDefinition Width="181*"/>
                     <ColumnDefinition Width="64*"/>
                 </Grid.ColumnDefinitions>
-                <ListBox x:Name="NewsPaperListBox" HorizontalAlignment="Left" Height="195" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="DeleteNewsPaper" Content="Löschen" Margin="145,165,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top" IsEnabled="False"/>
+                <ListBox x:Name="NewsPaperListBox" HorizontalAlignment="Left" Height="195" VerticalAlignment="Top" Width="120" SelectionChanged="NewsPaperListBox_SelectionChanged" DataContext="{Binding NewsPaper}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button x:Name="DeleteNewsPaper" Content="Löschen" Margin="145,165,0,0" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="75" Height="20" VerticalAlignment="Top" IsEnabled="False" Click="DeleteNewsPaper_Click"/>
                 <Button x:Name="NewNewsPaper" Click="CreateNewNewsPaper" Content="Erstellen" HorizontalAlignment="Left" Margin="145,125,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.48,0.6" Grid.ColumnSpan="2"/>
-                <Button x:Name="UpdateNewsPaper" Content="Übernehmen" HorizontalAlignment="Left" Margin="145,85,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" IsEnabled="False"/>
+                <Button x:Name="UpdateNewsPaper" Content="Übernehmen" HorizontalAlignment="Left" Margin="145,85,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" IsEnabled="False" Click="UpdateNewsPaper_Click"/>
                 <TextBox x:Name="NewsPaperName" HorizontalAlignment="Left" Height="23" Margin="125,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110" Grid.ColumnSpan="2"/>
                 <Label Content="Zeitungsname" HorizontalAlignment="Left" Margin="125,14,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.ColumnSpan="2" Width="110"/>
             </Grid>

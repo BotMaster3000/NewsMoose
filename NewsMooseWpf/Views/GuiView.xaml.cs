@@ -36,7 +36,9 @@ namespace NewsMooseWpf.Views
             if(NewsPaperName.Text != "")
             {
                 ViewModel.CreateNewNewsPaper(NewsPaperName.Text);
-                
+                NewsPaperListBox.ItemsSource = ViewModel.NewsPapers;
+                NewsPaperListBox.Items.Refresh();
+                NewsPaperListBox.SelectedIndex = NewsPaperListBox.Items.Count -1;
                 //ListBox Aktualisieren
             }
             
@@ -50,8 +52,6 @@ namespace NewsMooseWpf.Views
                 PublisherListBox.ItemsSource = ViewModel.Publishers;
                 PublisherListBox.Items.Refresh();
                 PublisherListBox.SelectedIndex = PublisherListBox.Items.Count - 1;
-                //Daten Speicher
-                //Daten Laden
                 //ListBox Aktualisieren
             }
         }
@@ -70,6 +70,38 @@ namespace NewsMooseWpf.Views
             
         }
 
+        private void NewsPaperListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count > 0)
+            {
+                NewsPaper newspaper = (NewsPaper)e.AddedItems[0];
+                NewsPaperName.Text = newspaper.Name;
+
+                UpdateNewsPaper.IsEnabled = true;
+                DeleteNewsPaper.IsEnabled = true;
+            }
+        }
+
+        private void UpdatePublisher_Click(object sender, RoutedEventArgs e)
+        {
+            Publisher publisher = (Publisher)PublisherListBox.SelectedItem;
+            if (publisher != null)
+            {
+                ViewModel.UpdatePublisher(publisher, PublisherName.Text);
+                PublisherListBox.Items.Refresh();
+            }
+        }
+
+        private void UpdateNewsPaper_Click(object sender, RoutedEventArgs e)
+        {
+            NewsPaper newspaper = (NewsPaper)NewsPaperListBox.SelectedItem;
+            if (newspaper != null)
+            {
+                ViewModel.UpdateNewsPaper(newspaper, NewsPaperName.Text);
+                NewsPaperListBox.Items.Refresh();
+            }
+        }
+
         private void DeletePublisher_Click(object sender, RoutedEventArgs e)
         {
             Publisher publisher = (Publisher)PublisherListBox.SelectedItem;
@@ -83,19 +115,36 @@ namespace NewsMooseWpf.Views
             {
                 UpdatePublisher.IsEnabled = false;
                 DeletePublisher.IsEnabled = false;
+                ViewModel.NewsPapers.Clear();
+                NewsPaperListBox.Items.Refresh();
+                NewsPaperName.Text = "";
                 NewsPaperGroup.IsEnabled = false;
+
             }
             
         }
 
-        private void UpdatePublisher_Click(object sender, RoutedEventArgs e)
+        private void DeleteNewsPaper_Click(object sender, RoutedEventArgs e)
         {
-            Publisher publisher = (Publisher)PublisherListBox.SelectedItem;
-            if (publisher != null)
+            NewsPaper newspaper = (NewsPaper)NewsPaperListBox.SelectedItem;
+            ViewModel.DeleteNewsPaper(newspaper);
+            NewsPaperListBox.ItemsSource = ViewModel.NewsPapers;
+            NewsPaperListBox.Items.Refresh();
+            NewsPaperName.Text = "";
+            NewsPaperListBox.SelectedIndex = 0;
+
+            if (ViewModel.NewsPapers.Count == 0)
             {
-                ViewModel.UpdatePublisher(publisher,PublisherName.Text);
-                PublisherListBox.Items.Refresh();
+                UpdateNewsPaper.IsEnabled = false;
+                DeleteNewsPaper.IsEnabled = false;
             }
+
         }
+
+        
+
+        
+
+        
     }
 }
