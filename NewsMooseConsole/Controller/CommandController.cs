@@ -209,7 +209,7 @@ namespace NewsMooseConsole.Controller
             bool found = false;
             for (int i = 0; i < viewModel.Newspapers.Count; i++)
             {
-                if(viewModel.Newspapers[i].Name == newsPaperName)
+                if (viewModel.Newspapers[i].Name == newsPaperName)
                 {
                     viewModel.DeleteNewsPaper(viewModel.Newspapers[i]);
                     found = true;
@@ -221,7 +221,38 @@ namespace NewsMooseConsole.Controller
 
         private void DeletePublisher()
         {
+            Console.Clear();
+            Console.WriteLine("Enter name of Publisher to Delete");
+            string publisherName = Console.ReadLine();
+            if (DeleteCommandConfirmed())
+            {
+                if (DeletePublisher(publisherName))
+                {
+                    Console.WriteLine("Publisher deleted");
+                }
+                else
+                {
+                    Console.WriteLine("No publisher found");
+                }
+            }
+            Console.WriteLine("Enter any key to continue");
+            Console.ReadKey();
+            DisplayMainMenu();
+        }
 
+        private bool DeletePublisher(string publisherName)
+        {
+            bool found = false;
+            for (int i = 0; i < viewModel.Publishers.Count; i++)
+            {
+                if (viewModel.Publishers[i].Name == publisherName)
+                {
+                    viewModel.DeletePublisher(viewModel.Publishers[i]);
+                    found = true;
+                    break;
+                }
+            }
+            return found;
         }
     }
 }
