@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NewsMooseClassLibrary.Interfaces;
 using NewsMooseClassLibrary.Models;
 
-namespace NewsMooseClassLibrary.DataStorage
+namespace NewsMooseClassLibrary.DataBase
 {
     public class XmlStorage : IDataBase
     {

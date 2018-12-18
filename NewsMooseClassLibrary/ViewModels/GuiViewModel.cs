@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NewsMooseClassLibrary.Interfaces;
+using NewsMooseClassLibrary.DataBase;
 using NewsMooseClassLibrary.Models;
 
 namespace NewsMooseClassLibrary.ViewModels
@@ -12,7 +13,8 @@ namespace NewsMooseClassLibrary.ViewModels
     public class GuiViewModel : IViewModel, INotifyPropertyChanged
     {
 
-        private IDataBase data = null;
+        
+        private IDataBase data = new DatabaseStorage();
 
         private List<Publisher> publishers = new List<Publisher>();
         public List<Publisher> Publishers
