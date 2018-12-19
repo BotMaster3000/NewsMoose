@@ -28,6 +28,8 @@ namespace NewsMooseWpf.Views
         public GuiView()
         {
             InitializeComponent();
+            ViewModel.ShowNewsPaper();
+            ViewModel.ShowPublishers();
         }
 
 
@@ -39,6 +41,7 @@ namespace NewsMooseWpf.Views
                 NewsPaperListBox.ItemsSource = ViewModel.NewsPapers;
                 NewsPaperListBox.Items.Refresh();
                 NewsPaperListBox.SelectedIndex = NewsPaperListBox.Items.Count -1;
+                
                 //ListBox Aktualisieren
             }
             
@@ -52,6 +55,7 @@ namespace NewsMooseWpf.Views
                 PublisherListBox.ItemsSource = ViewModel.Publishers;
                 PublisherListBox.Items.Refresh();
                 PublisherListBox.SelectedIndex = PublisherListBox.Items.Count - 1;
+                this.SetPublisherNewsPapers();
                 //ListBox Aktualisieren
             }
         }
@@ -66,6 +70,7 @@ namespace NewsMooseWpf.Views
                 UpdatePublisher.IsEnabled = true;
                 NewsPaperGroup.IsEnabled = true;
                 DeletePublisher.IsEnabled = true;
+                this.SetNewsPapers();
             }
             
         }
@@ -99,7 +104,9 @@ namespace NewsMooseWpf.Views
             {
                 ViewModel.UpdateNewsPaper(newspaper, NewsPaperName.Text);
                 NewsPaperListBox.Items.Refresh();
+                this.SetPublisherNewsPapers();
             }
+
         }
 
         private void DeletePublisher_Click(object sender, RoutedEventArgs e)
@@ -138,10 +145,30 @@ namespace NewsMooseWpf.Views
                 UpdateNewsPaper.IsEnabled = false;
                 DeleteNewsPaper.IsEnabled = false;
             }
+            this.SetPublisherNewsPapers();
 
         }
 
+        private void SetPublisherNewsPapers()
+        {
+            Publisher selectedpublisher = (Publisher) PublisherListBox.SelectedItem;
+
+            int publisherindex = ViewModel.Publishers.IndexOf(selectedpublisher);
+            ViewModel.Publishers[publisherindex].NewsPapers = ViewModel.NewsPapers;
+            
+
+        }
         
+        private void SetNewsPapers()
+        {
+            Publisher selectedpublisher = (Publisher)PublisherListBox.SelectedItem;
+            int publisherindex = ViewModel.Publishers.IndexOf(selectedpublisher);
+
+            ViewModel.NewsPapers = ViewModel.Publishers[publisherindex].NewsPapers;
+            NewsPaperListBox.ItemsSource = ViewModel.Publishers[publisherindex].NewsPapers;
+            NewsPaperName.Text = "";
+
+        }
 
         
 

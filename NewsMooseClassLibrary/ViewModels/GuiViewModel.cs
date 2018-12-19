@@ -69,7 +69,7 @@ namespace NewsMooseClassLibrary.ViewModels
             if (!exist)
             {
                 NewsPapers.Add(newnewsletter);
-                //data.InsertNewsletter(NewsPapers);
+                data.InsertNewsletters(NewsPapers);
             }
 
         }
@@ -86,7 +86,7 @@ namespace NewsMooseClassLibrary.ViewModels
             if (!exist)
             {
                 Publishers.Add(newPublisher);
-                //data.InsertPublishers(Publishers);
+                data.InsertPublishers(Publishers);
             }
             
             OnPropertyChanged(nameof(Publishers));
@@ -98,7 +98,9 @@ namespace NewsMooseClassLibrary.ViewModels
             {
                 NewsPapers.Remove(newsletter);
             }
-            //data.DeleteNewsletter(NewsPapers);
+            data.DeleteNewsLetters(new List<NewsPaper> { newsletter });
+
+            
         }
 
         public void DeletePublisher(Publisher publisher)
@@ -107,18 +109,18 @@ namespace NewsMooseClassLibrary.ViewModels
             {
                 Publishers.Remove(publisher);
             }
-            //data.DeletePublishers(Publishers);
+            data.DeletePublishers(new List<Publisher> { publisher });
 
         }
 
         public void ShowNewsPaper()
         {
-            throw new NotImplementedException();
+            NewsPapers = data.GetNewsPapers();
         }
 
         public void ShowPublishers()
         {
-            throw new NotImplementedException();
+            Publishers = data.GetPublishers();
         }
 
         public void UpdateNewsPaper(NewsPaper newsletter, string newName)
@@ -139,7 +141,7 @@ namespace NewsMooseClassLibrary.ViewModels
                     {
                         newsletter.Name = newName;
                         NewsPapers[NewsPapers.IndexOf(newsletter)] = newsletter;
-                        //data.UpdateNewsletters(NewsPapers);
+                        data.UpdateNewsletters(NewsPapers);
                     }
                     else
                     {
@@ -176,7 +178,7 @@ namespace NewsMooseClassLibrary.ViewModels
                     {
                         publisher.Name = newName;
                         Publishers[Publishers.IndexOf(publisher)] = publisher;
-                        //data.UpdatePublishers(Publishers);
+                        data.UpdatePublishers(Publishers);
                     }
                     else
                     {
