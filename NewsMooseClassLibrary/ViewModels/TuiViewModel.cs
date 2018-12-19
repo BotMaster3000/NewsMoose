@@ -84,7 +84,7 @@ namespace NewsMooseClassLibrary.ViewModels
         {
             foreach (NewsPaper paper in Newspapers)
             {
-                Console.WriteLine($"Name: {paper.Name} | Publisher: {paper.Publisher}");
+                Console.WriteLine($"Name: {paper.Name} | Publisher: {paper.Publisher.Name}");
             }
         }
 
