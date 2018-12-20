@@ -97,8 +97,9 @@ namespace NewsMooseClassLibrary.DataBase
                     xpublisher.Name = reader.GetString(1);
                     string publisherid = reader.GetString(0);
 
-                    command.CommandText = "SELECT FROM Newspaper WEHRE publisher_id = '" + publisherid + "'";
-                    SQLiteDataReader newsreader = command.ExecuteReader();
+                    SQLiteCommand command2 = new SQLiteCommand(connection);
+                    command2.CommandText = "SELECT * FROM Newspaper WHERE publisher_id = '" + publisherid + "'";
+                    SQLiteDataReader newsreader = command2.ExecuteReader();
 
                     List<NewsPaper> xnewspapers = new List<NewsPaper>();
                     if (newsreader.HasRows)
