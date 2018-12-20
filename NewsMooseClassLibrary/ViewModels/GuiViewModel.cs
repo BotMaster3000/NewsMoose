@@ -49,8 +49,11 @@ namespace NewsMooseClassLibrary.ViewModels
         public GuiViewModel()
         {
             XmlDataBase tempDataBase = database.LoadDataBase();
-            Publishers = tempDataBase.Publishers.ToList();
-            NewsPapers = tempDataBase.NewsPapers.ToList();
+            if (tempDataBase != null)
+            {
+                Publishers = tempDataBase.Publishers.ToList();
+                NewsPapers = tempDataBase.NewsPapers.ToList();
+            }
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
