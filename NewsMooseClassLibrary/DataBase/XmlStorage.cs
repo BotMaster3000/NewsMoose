@@ -24,14 +24,37 @@ namespace NewsMooseClassLibrary.DataBase
             throw new NotImplementedException();
         }
 
-        public List<NewsPaper> GetNewsPapers()
+        public List<NewsPaper> GetNewsPapers(Publisher publisher)
         {
-            throw new NotImplementedException();
+            Array publishers = this.LoadDataBase()?.Publishers;
+            if (publishers != null)
+            {
+                foreach (Publisher xpublisher in publishers)
+                {
+                    if (xpublisher.Name == publisher.Name)
+                    {
+                        return xpublisher.NewsPapers;
+                    }
+                }
+                
+            }
+            return new List<NewsPaper>();
         }
 
         public List<Publisher> GetPublishers()
         {
-            throw new NotImplementedException();
+
+            Array publishers = this.LoadDataBase()?.Publishers;
+            if(publishers != null)
+            {
+                List<Publisher> publisherlist = new List<Publisher>();
+                foreach (Publisher xpublisher in publishers)
+                {
+                    publisherlist.Add(xpublisher);
+                }
+                return publisherlist;
+            }
+            return new List<Publisher>();
         }
 
         public void SaveDataBase(XmlDataBase database)
@@ -77,6 +100,11 @@ namespace NewsMooseClassLibrary.DataBase
         }
 
         public void UpdatePublishers(List<Publisher> publishers)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<NewsPaper> GetNewsPapers()
         {
             throw new NotImplementedException();
         }

@@ -28,8 +28,10 @@ namespace NewsMooseWpf.Views
         public GuiView()
         {
             InitializeComponent();
-            ViewModel.ShowNewsPaper();
             ViewModel.ShowPublishers();
+            PublisherListBox.SelectedIndex = 0;
+            ViewModel.ShowNewsPaper((Publisher) PublisherListBox.SelectedItem);
+            
         }
 
 

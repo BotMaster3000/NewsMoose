@@ -15,7 +15,7 @@ namespace NewsMooseClassLibrary.ViewModels
     {
 
         
-        private IDataBase data = new DatabaseStorage();
+        private IDataBase data = new XmlStorage();
 
         private List<Publisher> publishers = new List<Publisher>();
         public List<Publisher> Publishers
@@ -109,9 +109,9 @@ namespace NewsMooseClassLibrary.ViewModels
 
         }
 
-        public void ShowNewsPaper()
+        public void ShowNewsPaper(Publisher publisher)
         {
-            NewsPapers = data.GetNewsPapers();
+            NewsPapers = data.GetNewsPapers(publisher);
         }
 
         public void ShowPublishers()
@@ -191,6 +191,11 @@ namespace NewsMooseClassLibrary.ViewModels
             {
                 MessageBox.Show("Bitte wählen Sie ein Verlag aus, bevor Sie diesen ändern können.");
             }
+        }
+
+        public void ShowNewsPaper()
+        {
+            throw new NotImplementedException();
         }
     }
 }

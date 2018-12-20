@@ -25,6 +25,11 @@ namespace NewsMooseClassLibrary.DataBase
             throw new NotImplementedException();
         }
 
+        public List<NewsPaper> GetNewsPapers(Publisher publisher)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Publisher> GetPublishers()
         {
             throw new NotImplementedException();

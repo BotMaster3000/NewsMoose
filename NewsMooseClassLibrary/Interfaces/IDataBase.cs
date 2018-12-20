@@ -10,6 +10,7 @@ namespace NewsMooseClassLibrary.Interfaces
     interface IDataBase
     {
         List<NewsPaper> GetNewsPapers();
+        List<NewsPaper> GetNewsPapers(Publisher publisher);
         void InsertNewsletters(List<NewsPaper> newsPapers);
         void UpdateNewsletters(List<NewsPaper> newsPapers);
         void DeleteNewsLetters(List<NewsPaper> newsPaper);
