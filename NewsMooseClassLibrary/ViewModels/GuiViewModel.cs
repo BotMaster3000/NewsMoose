@@ -23,7 +23,6 @@ namespace NewsMooseClassLibrary.ViewModels
             get { return publishers; }
             set
             {
-                // Anmerkung zur Entwicklung!: Nicht vergessen das OnPropertyChanged nicht ausgeführt wird, wenn man einen Publisher direkt ändert, sondern nur wenn die Liste geändert wird
                 if (publishers != value)
                 {
                     publishers = value;
@@ -37,7 +36,6 @@ namespace NewsMooseClassLibrary.ViewModels
             get { return newspapers; }
             set
             {
-                // Anmerkung zur Entwicklung!: Nicht vergessen das OnPropertyChanged nicht ausgeführt wird, wenn man einen Publisher direkt ändert, sondern nur wenn die Liste geändert wird
                 if (newspapers != value)
                 {
                     newspapers = value;
@@ -45,8 +43,6 @@ namespace NewsMooseClassLibrary.ViewModels
                 }
             }
         }
-
-        public List<NewsPaper> Newspapers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -11,6 +11,9 @@ namespace NewsMooseConsole
     {
         static void Main()
         {
+
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             CommandController controller = new CommandController();
             controller.Execute("DisplayMainMenu");
             string command = "";

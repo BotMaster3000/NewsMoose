@@ -136,7 +136,7 @@ namespace NewsMooseConsole.Controller
 
         private bool NewsPaperAlreadyExists(string newsPaperName)
         {
-            foreach (NewsPaper paper in viewModel.Newspapers)
+            foreach (NewsPaper paper in viewModel.NewsPapers)
             {
                 if (paper.Name == newsPaperName)
                 {
@@ -208,11 +208,11 @@ namespace NewsMooseConsole.Controller
         private bool DeleteNewsPaper(string newsPaperName)
         {
             bool found = false;
-            for (int i = 0; i < viewModel.Newspapers.Count; i++)
+            for (int i = 0; i < viewModel.NewsPapers.Count; i++)
             {
-                if (viewModel.Newspapers[i].Name == newsPaperName)
+                if (viewModel.NewsPapers[i].Name == newsPaperName)
                 {
-                    viewModel.DeleteNewsPaper(viewModel.Newspapers[i]);
+                    viewModel.DeleteNewsPaper(viewModel.NewsPapers[i]);
                     found = true;
                     break;
                 }
@@ -317,7 +317,7 @@ namespace NewsMooseConsole.Controller
             }
             else
             {
-                foreach (NewsPaper paper in viewModel.Newspapers)
+                foreach (NewsPaper paper in viewModel.NewsPapers)
                 {
                     if (paper.Publisher.Name == publisher.Name)
                     {
@@ -345,7 +345,7 @@ namespace NewsMooseConsole.Controller
 
         private NewsPaper GetNewsPaper(string newsPaperName)
         {
-            foreach (NewsPaper paper in viewModel.Newspapers)
+            foreach (NewsPaper paper in viewModel.NewsPapers)
             {
                 if (paper.Name == newsPaperName)
                 {
