@@ -14,6 +14,9 @@ namespace NewsMooseClassLibrary.ViewModels
 {
     public class GuiViewModel : IViewModel, INotifyPropertyChanged
     {
+
+        private IDataBase data = new DatabaseStorage();
+
         private List<Publisher> publishers = new List<Publisher>();
         public List<Publisher> Publishers
         {
@@ -50,9 +53,6 @@ namespace NewsMooseClassLibrary.ViewModels
             NewsPapers = tempDataBase.NewsPapers.ToList();
         }
         
-        private IDataBase data = new XmlStorage();
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
