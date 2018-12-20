@@ -73,7 +73,24 @@ namespace NewsMooseClassLibrary.DataBase
 
         public XmlDataBase LoadDataBase()
         {
-            throw new NotImplementedException();
+            SQLiteCommand command = new SQLiteCommand(connection);
+            command.CommandText = "SELECT * FROM Publisher";
+            command.ExecuteNonQuery();
+            SQLiteDataReader reader =  command.ExecuteReader();
+
+            List <Publisher> publishers = new List<Publisher>();
+            foreach(Publisher xpublisher in reader)
+            {
+                publishers.Add(xpublisher);
+            }
+            List<NewsPaper> newspaper = new List<NewsPaper>();
+            foreach (NewsPaper xnewspaper in reader)
+            {
+                newspaper.Add(xnewspaper);
+            }
+
+            XmlDataBase xmldata = new XmlDataBase(newspaper.ToArray(), publishers.ToArray());
+            return xmldata;
         }
 
         public void SaveDataBase(XmlDataBase database)
