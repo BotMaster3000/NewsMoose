@@ -18,5 +18,8 @@ namespace NewsMooseClassLibrary.Interfaces
         void InsertPublishers(List<Publisher> publishers);
         void UpdatePublishers(List<Publisher> publishers);
         void DeletePublishers(List<Publisher> publishers);
+
+        void SaveDataBase(XmlDataBase database);
+        XmlDataBase LoadDataBase();
     }
 }
