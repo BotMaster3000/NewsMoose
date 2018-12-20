@@ -40,6 +40,16 @@ namespace NewsMooseClassLibrary.DataBase
             throw new NotImplementedException();
         }
 
+        public XmlDataBase LoadDataBase()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveDataBase(XmlDataBase database)
+        {
+            throw new NotImplementedException();
+        }
+
         public void UpdateNewsletters(List<NewsPaper> newsPapers)
         {
             throw new NotImplementedException();
