@@ -54,8 +54,8 @@ namespace NewsMooseClassLibrary.ViewModels
         {
             database = new XmlStorage();
             XmlDataBase loadedDataBase = database.LoadDataBase();
-            Publishers = loadedDataBase.Publishers.ToList();
-            NewsPapers = loadedDataBase.NewsPapers.ToList();
+            Publishers = loadedDataBase?.Publishers.ToList();
+            NewsPapers = loadedDataBase?.NewsPapers.ToList();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
