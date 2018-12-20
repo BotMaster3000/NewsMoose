@@ -31,7 +31,7 @@ namespace NewsMooseClassLibrary.ViewModels
 
         private List<NewsPaper> newspapers;
 
-        public List<NewsPaper> Newspapers
+        public List<NewsPaper> NewsPapers
         {
             get
             {
@@ -42,7 +42,7 @@ namespace NewsMooseClassLibrary.ViewModels
                 if (newspapers != value)
                 {
                     newspapers = value;
-                    OnPropertyChanged(nameof(Newspapers));
+                    OnPropertyChanged(nameof(NewsPapers));
                 }
             }
         }
@@ -57,8 +57,8 @@ namespace NewsMooseClassLibrary.ViewModels
         public void CreateNewNewsPaper(string name)
         {
             NewsPaper newspaper = new NewsPaper(name);
-            Newspapers.Add(newspaper);
-            OnPropertyChanged(nameof(Newspapers));
+            NewsPapers.Add(newspaper);
+            OnPropertyChanged(nameof(NewsPapers));
         }
 
         public void CreateNewPublisher(string name)
@@ -70,8 +70,8 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void DeleteNewsPaper(NewsPaper newsPaper)
         {
-            Newspapers.Remove(newsPaper);
-            OnPropertyChanged(nameof(Newspapers));
+            NewsPapers.Remove(newsPaper);
+            OnPropertyChanged(nameof(NewsPapers));
         }
 
         public void DeletePublisher(Publisher publisher)
@@ -82,9 +82,9 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public void ShowNewsPaper()
         {
-            foreach (NewsPaper paper in Newspapers)
+            foreach (NewsPaper paper in NewsPapers)
             {
-                Console.WriteLine($"Name: {paper.Name} | Publisher: {paper.Publisher.Name}");
+                Console.WriteLine($"Name: {paper.Name} | Publisher: {paper.Publisher?.Name}");
             }
         }
 
@@ -104,7 +104,7 @@ namespace NewsMooseClassLibrary.ViewModels
         public void UpdateNewsPaper(NewsPaper newsPaper, string newName)
         {
             newsPaper.Name = newName;
-            OnPropertyChanged(nameof(Newspapers));
+            OnPropertyChanged(nameof(NewsPapers));
         }
 
         public void UpdatePublisher(Publisher publisher, string newName)

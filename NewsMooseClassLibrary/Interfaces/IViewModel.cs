@@ -8,7 +8,7 @@ namespace NewsMooseClassLibrary.Interfaces
     public interface IViewModel : INotifyPropertyChanged
     {
         List<Publisher> Publishers { get; set; }
-        List<NewsPaper> Newspapers { get; set; }
+        List<NewsPaper> NewsPapers { get; set; }
 
         void CreateNewPublisher(string name);
         void UpdatePublisher(Publisher publisher, string newName);
