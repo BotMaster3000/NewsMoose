@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using NewsMooseClassLibrary.Interfaces;
 using NewsMooseClassLibrary.Models;
+using NewsMooseClassLibrary.DataBase;
 
 namespace NewsMooseClassLibrary.ViewModels
 {
     public class TuiViewModel : IViewModel
     {
+        private IDataBase database;
+
         private List<Publisher> publishers;
 
         public List<Publisher> Publishers
@@ -47,6 +50,14 @@ namespace NewsMooseClassLibrary.ViewModels
             }
         }
 
+        public TuiViewModel()
+        {
+            database = new XmlStorage();
+            XmlDataBase loadedDataBase = database.LoadDataBase();
+            Publishers = loadedDataBase.Publishers.ToList();
+            NewsPapers = loadedDataBase.NewsPapers.ToList();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
@@ -59,6 +70,7 @@ namespace NewsMooseClassLibrary.ViewModels
             NewsPaper newspaper = new NewsPaper(name);
             NewsPapers.Add(newspaper);
             OnPropertyChanged(nameof(NewsPapers));
+            SaveDataBase();
         }
 
         public void CreateNewPublisher(string name)
@@ -66,18 +78,21 @@ namespace NewsMooseClassLibrary.ViewModels
             Publisher publisher = new Publisher(name);
             Publishers.Add(publisher);
             OnPropertyChanged(nameof(Publishers));
+            SaveDataBase();
         }
 
         public void DeleteNewsPaper(NewsPaper newsPaper)
         {
             NewsPapers.Remove(newsPaper);
             OnPropertyChanged(nameof(NewsPapers));
+            SaveDataBase();
         }
 
         public void DeletePublisher(Publisher publisher)
         {
             Publishers.Remove(publisher);
             OnPropertyChanged(nameof(Publishers));
+            SaveDataBase();
         }
 
         public void ShowNewsPaper()
@@ -105,12 +120,19 @@ namespace NewsMooseClassLibrary.ViewModels
         {
             newsPaper.Name = newName;
             OnPropertyChanged(nameof(NewsPapers));
+            SaveDataBase();
         }
 
         public void UpdatePublisher(Publisher publisher, string newName)
         {
             publisher.Name = newName;
             OnPropertyChanged(nameof(Publishers));
+            SaveDataBase();
+        }
+
+        private void SaveDataBase()
+        {
+            database.SaveDataBase(new XmlDataBase(NewsPapers.ToArray(), Publishers.ToArray()));
         }
     }
 }

@@ -16,5 +16,10 @@ namespace NewsMooseClassLibrary.Models
             Name = name;
             NewsPapers = NewsPapers;
         }
+
+        public Publisher()
+        {
+
+        }
     }
 }

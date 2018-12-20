@@ -17,5 +17,7 @@ namespace NewsMooseClassLibrary.Models
             NewsPapers = newsPapers;
             Publishers = publishers;
         }
+
+        public XmlDataBase() { }
     }
 }
