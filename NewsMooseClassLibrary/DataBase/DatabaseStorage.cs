@@ -84,22 +84,40 @@ namespace NewsMooseClassLibrary.DataBase
         {
             SQLiteCommand command = new SQLiteCommand(connection);
             command.CommandText = "SELECT * FROM Publisher";
-            command.ExecuteNonQuery();
             SQLiteDataReader reader = command.ExecuteReader();
 
+            List<NewsPaper> newspapers = new List<NewsPaper>();
             List<Publisher> publishers = new List<Publisher>();
-            foreach (Publisher xpublisher in reader)
+
+            if (reader.HasRows)
             {
-                publishers.Add(xpublisher);
-            }
-            List<NewsPaper> newspaper = new List<NewsPaper>();
-            foreach (NewsPaper xnewspaper in reader)
-            {
-                newspaper.Add(xnewspaper);
+                while (reader.Read())
+                {
+                    Publisher xpublisher = new Publisher();
+                    xpublisher.Name = reader.GetString(1);
+                    string publisherid = reader.GetString(0);
+
+                    command.CommandText = "SELECT FROM Newspaper WEHRE publisher_id = '" + publisherid + "'";
+                    SQLiteDataReader newsreader = command.ExecuteReader();
+
+                    List<NewsPaper> xnewspapers = new List<NewsPaper>();
+                    if (newsreader.HasRows)
+                    {
+                        while (newsreader.Read())
+                        {
+                            NewsPaper newspaper = new NewsPaper();
+                            newspaper.Name = newsreader.GetString(0);
+                            xnewspapers.Add(newspaper);
+                        }
+                    }
+                    newspapers.AddRange(xnewspapers);
+
+                    publishers.Add(xpublisher);
+                }
             }
 
-            XmlDataBase xmldata = new XmlDataBase(newspaper.ToArray(), publishers.ToArray());
-            return xmldata;
+            return new XmlDataBase(newspapers.ToArray(), publishers.ToArray());
+
         }
 
         public void SaveDataBase(XmlDataBase database)
