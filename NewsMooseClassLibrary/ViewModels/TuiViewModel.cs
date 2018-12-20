@@ -52,7 +52,8 @@ namespace NewsMooseClassLibrary.ViewModels
 
         public TuiViewModel()
         {
-            database = new XmlStorage();
+            //database = new XmlStorage();
+            database = new DatabaseStorage();
             XmlDataBase loadedDataBase = database.LoadDataBase();
             Publishers = loadedDataBase?.Publishers.ToList();
             NewsPapers = loadedDataBase?.NewsPapers.ToList();
