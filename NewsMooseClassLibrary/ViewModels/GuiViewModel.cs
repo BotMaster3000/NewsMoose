@@ -8,15 +8,12 @@ using NewsMooseClassLibrary.Interfaces;
 using NewsMooseClassLibrary.DataBase;
 using NewsMooseClassLibrary.Models;
 using System.Windows;
+using System.IO;
 
 namespace NewsMooseClassLibrary.ViewModels
 {
     public class GuiViewModel : IViewModel, INotifyPropertyChanged
     {
-
-        
-        private IDataBase data = new XmlStorage();
-
         private List<Publisher> publishers = new List<Publisher>();
         public List<Publisher> Publishers
         {
@@ -44,11 +41,29 @@ namespace NewsMooseClassLibrary.ViewModels
             }
         }
 
+        private XmlStorage database = new XmlStorage();
+
+        public GuiViewModel()
+        {
+            XmlDataBase tempDataBase = database.LoadDataBase();
+            Publishers = tempDataBase.Publishers.ToList();
+            NewsPapers = tempDataBase.NewsPapers.ToList();
+        }
+        
+        private IDataBase data = new XmlStorage();
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public void OnPropertyChanged(string name)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void SaveData()
+        {
+            XmlDataBase xmldata = new XmlDataBase(NewsPapers.ToArray(), Publishers.ToArray());
+            data.SaveDataBase(xmldata);
         }
 
         public void CreateNewNewsPaper(string name)
@@ -65,7 +80,7 @@ namespace NewsMooseClassLibrary.ViewModels
             if (!exist)
             {
                 NewsPapers.Add(newnewsletter);
-                data.InsertNewsletters(NewsPapers);
+                SaveData();
             }
 
         }
@@ -82,7 +97,7 @@ namespace NewsMooseClassLibrary.ViewModels
             if (!exist)
             {
                 Publishers.Add(newPublisher);
-                data.InsertPublishers(Publishers);
+                SaveData();
             }
             
             OnPropertyChanged(nameof(Publishers));
@@ -94,9 +109,9 @@ namespace NewsMooseClassLibrary.ViewModels
             {
                 NewsPapers.Remove(newsletter);
             }
-            data.DeleteNewsLetters(new List<NewsPaper> { newsletter });
+            SaveData();
 
-            
+
         }
 
         public void DeletePublisher(Publisher publisher)
@@ -105,7 +120,7 @@ namespace NewsMooseClassLibrary.ViewModels
             {
                 Publishers.Remove(publisher);
             }
-            data.DeletePublishers(new List<Publisher> { publisher });
+            SaveData();
 
         }
 
@@ -137,7 +152,7 @@ namespace NewsMooseClassLibrary.ViewModels
                     {
                         newsletter.Name = newName;
                         NewsPapers[NewsPapers.IndexOf(newsletter)] = newsletter;
-                        data.UpdateNewsletters(NewsPapers);
+                        SaveData();
                     }
                     else
                     {
@@ -174,7 +189,7 @@ namespace NewsMooseClassLibrary.ViewModels
                     {
                         publisher.Name = newName;
                         Publishers[Publishers.IndexOf(publisher)] = publisher;
-                        data.UpdatePublishers(Publishers);
+                        SaveData();
                     }
                     else
                     {
