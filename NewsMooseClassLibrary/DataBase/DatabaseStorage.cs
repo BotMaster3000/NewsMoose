@@ -5,11 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using NewsMooseClassLibrary.Interfaces;
 using NewsMooseClassLibrary.Models;
+using System.Data.SQLite;
 
 namespace NewsMooseClassLibrary.DataBase
 {
     public class DatabaseStorage : IDataBase
     {
+        private string DATA_SOURCE = "DataBase.sqlite";
+        SQLiteConnection connection;
+
+        public DatabaseStorage()
+        {
+            connection = new SQLiteConnection("Data Source=" + DATA_SOURCE);
+            connection.Open();
+        }
+
         public void DeleteNewsLetters(List<NewsPaper> newsPaper)
         {
             throw new NotImplementedException();
