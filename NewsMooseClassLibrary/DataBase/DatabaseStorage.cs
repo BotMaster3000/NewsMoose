@@ -113,7 +113,7 @@ namespace NewsMooseClassLibrary.DataBase
                 int counter = 0;
                 foreach (Publisher publisher in database.Publishers)
                 {
-                    command.CommandText = $"INSERT INTO Publisher(publisher_id, publishername) VALUES ({counter}, {publisher.Name})";
+                    command.CommandText = $"INSERT INTO Publisher(publisher_id, publishername) VALUES ('{counter}', '{publisher.Name}')";
                     command.ExecuteNonQuery();
 
                     publisherNameAndId.Add(publisher.Name, counter);
@@ -124,12 +124,12 @@ namespace NewsMooseClassLibrary.DataBase
                 foreach (NewsPaper paper in database.NewsPapers)
                 {
                     string publisherID = "NULL";
-                    if (publisherNameAndId.Keys.Contains(paper.Publisher.Name))
+                    if (paper.Publisher != null && publisherNameAndId.Keys.Contains(paper.Publisher?.Name))
                     {
                         publisherID = publisherNameAndId[paper.Publisher.Name].ToString();
                     }
 
-                    command.CommandText = $"INSERT INTO Newspaper(newspapername, publisher_id) VALUES({paper.Name}, {publisherID})";
+                    command.CommandText = $"INSERT INTO Newspaper(newspapername, publisher_id) VALUES('{paper.Name}', '{publisherID}');";
                     command.ExecuteNonQuery();
                 }
             }
