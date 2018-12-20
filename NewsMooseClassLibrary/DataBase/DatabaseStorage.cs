@@ -53,7 +53,19 @@ namespace NewsMooseClassLibrary.DataBase
 
         public List<NewsPaper> GetNewsPapers(Publisher publisher)
         {
-            throw new NotImplementedException();
+            Array publishers = this.LoadDataBase()?.Publishers;
+            if (publishers != null)
+            {
+               foreach(Publisher xpublisher in publishers)
+                {
+                    if (xpublisher.Name == publisher.Name)
+                    {
+                        return xpublisher.NewsPapers.ToList();
+                    }
+                }
+                
+            }
+            return new List<NewsPaper>();
         }
 
         public List<Publisher> GetPublishers()
