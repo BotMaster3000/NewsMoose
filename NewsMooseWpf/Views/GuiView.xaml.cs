@@ -44,6 +44,14 @@ namespace NewsMooseWpf.Views
             
         }
 
+        public void SnycPublisherNewsPaper()
+        {
+            Publisher selectedpublisher = (Publisher)PublisherListBox.SelectedItem;
+            int publisherindex = ViewModel.Publishers.IndexOf(selectedpublisher);
+            ViewModel.Publishers[publisherindex] = selectedpublisher;
+
+        }
+
 
         private void CreateNewNewsPaper(object sender, RoutedEventArgs e)
         {
@@ -53,7 +61,11 @@ namespace NewsMooseWpf.Views
                 NewsPaperListBox.ItemsSource = ViewModel.NewsPapers;
                 NewsPaperListBox.Items.Refresh();
                 NewsPaperListBox.SelectedIndex = NewsPaperListBox.Items.Count -1;
-                
+
+                int newspaperindex = ViewModel.NewsPapers.IndexOf((NewsPaper) NewsPaperListBox.SelectedItem);
+                ViewModel.NewsPapers[newspaperindex].Publisher = (Publisher) PublisherListBox.SelectedItem;
+
+
                 //ListBox Aktualisieren
             }
             
@@ -114,8 +126,10 @@ namespace NewsMooseWpf.Views
             NewsPaper newspaper = (NewsPaper)NewsPaperListBox.SelectedItem;
             if (newspaper != null)
             {
+                
                 ViewModel.UpdateNewsPaper(newspaper, NewsPaperName.Text);
                 NewsPaperListBox.Items.Refresh();
+                SnycPublisherNewsPaper();
                 this.SetPublisherNewsPapers();
             }
 
@@ -149,6 +163,7 @@ namespace NewsMooseWpf.Views
             ViewModel.DeleteNewsPaper(newspaper);
             NewsPaperListBox.ItemsSource = ViewModel.NewsPapers;
             NewsPaperListBox.Items.Refresh();
+            SnycPublisherNewsPaper();
             NewsPaperName.Text = "";
             NewsPaperListBox.SelectedIndex = 0;
 
@@ -167,6 +182,8 @@ namespace NewsMooseWpf.Views
 
             int publisherindex = ViewModel.Publishers.IndexOf(selectedpublisher);
             ViewModel.Publishers[publisherindex].NewsPapers = ViewModel.NewsPapers;
+
+
             
 
         }
