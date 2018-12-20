@@ -78,7 +78,41 @@ namespace NewsMooseClassLibrary.DataBase
 
         public void SaveDataBase(XmlDataBase database)
         {
-            throw new NotImplementedException();
+            ClearDatabase();
+
+            Dictionary<string, int> publisherNameAndId = new Dictionary<string, int>();
+            using (SQLiteCommand command = new SQLiteCommand())
+            {
+
+                int counter = 0;
+                foreach (Publisher publisher in database.Publishers)
+                {
+                    command.CommandText = $"INSERT INTO Publisher(publisher_id, publishername) VALUES ({counter}, {publisher.Name})";
+                    command.ExecuteNonQuery();
+
+                    publisherNameAndId.Add(publisher.Name, counter);
+
+                    ++counter;
+                }
+
+                foreach (NewsPaper paper in database.NewsPapers)
+                {
+                    command.CommandText = $"INSERT INTO Newspaper(newspapername, publisher_id) VALUES({paper.Name}, {publisherNameAndId[paper.Publisher.Name]})";
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void ClearDatabase()
+        {
+            using (SQLiteCommand command = new SQLiteCommand())
+            {
+                command.CommandText = "DELETE FROM Publisher";
+                command.ExecuteNonQuery();
+
+                command.CommandText = "DELETE FROM Newspaper";
+                command.ExecuteNonQuery();
+            }
         }
 
         public void UpdateNewsletters(List<NewsPaper> newsPapers)
