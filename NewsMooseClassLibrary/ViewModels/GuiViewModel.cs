@@ -44,11 +44,9 @@ namespace NewsMooseClassLibrary.ViewModels
             }
         }
 
-        private XmlStorage database = new XmlStorage();
-
         public GuiViewModel()
         {
-            XmlDataBase tempDataBase = database.LoadDataBase();
+            XmlDataBase tempDataBase = data.LoadDataBase();
             if (tempDataBase != null)
             {
                 Publishers = tempDataBase.Publishers.ToList();

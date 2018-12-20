@@ -137,6 +137,12 @@ namespace NewsMooseClassLibrary.DataBase
 
                     publisherNameAndId.Add(publisher.Name, counter);
 
+                    foreach(NewsPaper paper in publisher.NewsPapers)
+                    {
+                        command.CommandText = $"INSERT INTO Newspaper(newspapername, publisher_id) VALUES('{paper.Name}', '{counter}')";
+                        command.ExecuteNonQuery();
+                    }
+
                     ++counter;
                 }
 
@@ -148,8 +154,12 @@ namespace NewsMooseClassLibrary.DataBase
                         publisherID = publisherNameAndId[paper.Publisher.Name].ToString();
                     }
 
-                    command.CommandText = $"INSERT INTO Newspaper(newspapername, publisher_id) VALUES('{paper.Name}', '{publisherID}');";
-                    command.ExecuteNonQuery();
+                    try
+                    {
+                        command.CommandText = $"INSERT INTO Newspaper(newspapername, publisher_id) VALUES('{paper.Name}', '{publisherID}');";
+                        command.ExecuteNonQuery();
+                    }
+                    catch { }
                 }
             }
         }
