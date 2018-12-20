@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NewsMooseClassLibrary.Interfaces;
 using NewsMooseClassLibrary.Models;
 using System.Data.SQLite;
+using System.IO;
 
 namespace NewsMooseClassLibrary.DataBase
 {
@@ -18,6 +19,21 @@ namespace NewsMooseClassLibrary.DataBase
         {
             connection = new SQLiteConnection("Data Source=" + DATA_SOURCE);
             connection.Open();
+
+            InitializeDatabase();
+        }
+
+        private void InitializeDatabase()
+        {
+            if (!File.Exists(DATA_SOURCE))
+            {
+                SQLiteCommand command = new SQLiteCommand(connection);
+                command.CommandText = "CREATE TABLE Publisher (publisher_id varchar(20), publishername varchar(50))";
+                command.ExecuteNonQuery();
+
+                command.CommandText = "CREATE TABLE Newspaper (newspapername varchar(50), publisher_id varchar(20))";
+                command.ExecuteNonQuery();
+            }
         }
 
         public void DeleteNewsLetters(List<NewsPaper> newsPaper)
